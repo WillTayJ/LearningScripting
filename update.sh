@@ -12,20 +12,34 @@ check_exit_code(){
 	fi
 }
 
+#confirming update is starting
+update_start(){
+	echo "update is starting..."
+}
+
+#confirming update is finished
+update_finish(){
+	echo "update is complete!"
+}
+
 #checks if redhat system
 if grep -q "REDHAT" $release_file
 then
+	update_start
 	#update for redhat systems
 	sudo dnf update -y >>$logfile 2>>$errorlog
+	update_finish
 	check_exit_code
 
 #check if ubuntu or debian system
 elif grep -q "ubuntu" $release_file || grep -q "debian" $release_file
 then
+	update_start
 	#update for ubuntu or debian systems
 	sudo apt update -y >>$logfile 2>>$errorlog
 	check_exit_code
 	sudo apt dist-upgrade -y >>$logfile 2>>$errorlog
+	update_finish
 	check_exit_code
 
 else
