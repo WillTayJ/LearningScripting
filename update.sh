@@ -8,18 +8,18 @@ errorlog=/var/log/updater_errors.log
 check_exit_code(){
 	if [ $? -ne 0 ]
 	then
-		echo "An error occured, Please check the $errorlog file."
+		echo "An error occured, Please check the $errorlog file. Current Time: $(date)"
 	fi
 }
 
 #confirming update is starting
 update_start(){
-	echo "update is starting..."
+	echo "update is starting... Current Time: $(date)"
 }
 
 #confirming update is finished
 update_finish(){
-	echo "update is complete!"
+	echo "update is complete! Current Time: $(date)"
 }
 
 #checks if redhat system
